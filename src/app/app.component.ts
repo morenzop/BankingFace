@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Bankproject';
-  email: any;
-  password: any;
-
-  processForm() {
-
-  }
 }
