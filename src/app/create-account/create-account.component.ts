@@ -20,17 +20,19 @@ export class CreateAccountComponent implements OnInit {
 
   onSubmit() {
     // parse the form data into a JSON we can submit to the database
-    const customerString = '{\"first_name\": \"' + this.createAccountForm.first_name + '\",' +
-                            '\"last_name\": \"' + this.createAccountForm.last_name + '\",' +
-                            '\"email\": \"' + this.createAccountForm.email.toLowerCase() + '\",' +
-                            '\"password\": \"' + this.createAccountForm.password + '\",' +
-                            '\"address\": { \"street-number\": \"' + this.createAccountForm.street_number + '\",' +
-                            '\"street_name\": \"' + this.createAccountForm.street_name + '\",' +
-                            '\"city\": \"' + this.createAccountForm.city + '\",' +
-                            '\"state\": \"' + this.createAccountForm.state + '\",' +
-                            '\"zip\": \"' + this.createAccountForm.zip + '\"} }';
-
-    this.customer = JSON.parse(customerString);
+    this.customer = {
+      first_name: this.createAccountForm.first_name,
+      last_name: this.createAccountForm.last_name,
+      email: this.createAccountForm.email,
+      password: this.createAccountForm.password,
+      address: {
+        street_number: this.createAccountForm.street_number,
+        street_name: this.createAccountForm.street_name,
+        city: this.createAccountForm.city,
+        state: this.createAccountForm.state,
+        zip: this.createAccountForm.zip
+      }
+    };
 
     // check to see if the customer has an account with that email
 
@@ -39,8 +41,17 @@ export class CreateAccountComponent implements OnInit {
         if (JSON.stringify(data).includes(this.createAccountForm.email.toLowerCase())) {
           this.message = 'An account with that email already exists, please sign in.';
         } else {
-          // TODO: post to customer repository
-          this.message = 'Account successfully created! You may now sign in.';
+
+          // post the customer to the server
+
+          this.customerService.createCustomer(this.customer).subscribe(
+            res => {
+              this.message = 'Account successfully created! You may now sign in.';
+            }, err => {
+              this.message = 'Whoops! Looks like there was an error in creating your account. Please try again later.';
+              throwError(err);
+            }
+          );
         }
       }, err => {
         this.message = 'Whoops! Looks like there was an error in creating your account. Please try again later.';
