@@ -1,0 +1,32 @@
+<div class="card m-3 text-center">
+  <h5 class="card-header">Thank you for choosing our bank! Please log in.</h5>
+  <div class="card-body">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+      <div class="form-group form-row">
+        <div class="form-group col">
+          <label>Email</label>
+          <input type="text" name="email" id="email" class="form-control" [(ngModel)]="model && model.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required>
+          <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">Email must be a valid email address</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" [(ngModel)]="model && model.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required>
+          <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+          <button class="btn btn-primary">Sign In</button>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-secondary mt-3" routerLink="/create-account">Create an account</button>
+      </div>
+    </form>
+  </div>
+</div>
+<router-outlet></router-outlet>

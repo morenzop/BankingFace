@@ -1,0 +1,103 @@
+<div class="card m-3">
+  <h5 class="card-header text-center">Thank you for creating an account! Please enter your infomration below to get started.</h5>
+  <div class="card-body">
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+      <div class="form-row">
+        <div class="form-group col">
+          <label>First Name</label>
+          <input type="text" name="firstName" class="form-control" [(ngModel)]="createAccountForm.first_name" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required>
+          <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+            <div *ngIf="firstName.errors.required">First Name is required</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Last Name</label>
+          <input type="text" name="lastName" class="form-control" [(ngModel)]="createAccountForm.last_name" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required>
+          <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+            <div *ngIf="lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" name="email" class="form-control" [(ngModel)]="createAccountForm.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
+        <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label>Street Number</label>
+          <input type="text" name="street_number" class="form-control" [(ngModel)]="createAccountForm.street_number" #street_number="ngModel" [ngClass]="{ 'is-invalid': f.submitted && street_number.invalid }" required>
+          <div *ngIf="f.submitted && street_number.invalid" class="invalid-feedback">
+            <div *ngIf="street_number.errors.required">Street number is required</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Street</label>
+          <input type="text" name="street_name" class="form-control" [(ngModel)]="createAccountForm.street_name" #street_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && street_name.invalid }" required>
+          <div *ngIf="f.submitted && street_name.invalid" class="invalid-feedback">
+            <div *ngIf="street_name.errors.required">Street is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label>City</label>
+          <input type="text" name="city" class="form-control" [(ngModel)]="createAccountForm.city" #city="ngModel" [ngClass]="{ 'is-invalid': f.submitted && city.invalid }" required>
+          <div *ngIf="f.submitted && city.invalid" class="invalid-feedback">
+            <div *ngIf="city.errors.required">City is required</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>State</label>
+          <input type="text" name="state" class="form-control" [(ngModel)]="createAccountForm.state" #state="ngModel" [ngClass]="{ 'is-invalid': f.submitted && state.invalid }" required>
+          <div *ngIf="f.submitted && state.invalid" class="invalid-feedback">
+            <div *ngIf="state.errors.required">Street is required</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Zip Code</label>
+          <input type="text" name="zip" class="form-control" [(ngModel)]="createAccountForm.zip" #zip="ngModel" [ngClass]="{ 'is-invalid': f.submitted && zip.invalid }" required>
+          <div *ngIf="f.submitted && zip.invalid" class="invalid-feedback">
+            <div *ngIf="zip.errors.required">Street is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label>Password</label>
+          <input type="password" name="password" class="form-control" [(ngModel)]="createAccountForm.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6">
+          <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Confirm Password</label>
+          <input type="password" name="confirmPassword" class="form-control" [(ngModel)]="createAccountForm.confirmPassword" #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required>
+          <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+            <div *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+            <div *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" name="acceptTerms" id="acceptTerms" class="form-check-input" [(ngModel)]="createAccountForm.acceptTerms" #acceptTerms="ngModel" [ngClass]="{ 'is-invalid': f.submitted && acceptTerms.invalid }" required>
+        <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+        <div *ngIf="f.submitted && acceptTerms.invalid" class="invalid-feedback">Accept Ts & Cs is required</div>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary">Register</button>
+        <button class="btn btn-secondary ml-1 mr-1" type="reset">Cancel</button>
+        <button class="btn btn-secondary" routerLink="/sign-in">Sign In</button>
+      </div>
+    </form>
+    <br />
+    <div class="text-center">
+      {{message}}
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
