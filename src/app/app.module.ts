@@ -4,16 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
-import { CreateAccountComponent } from './create-account/create-account.component';
+import { CreateCustomerComponent } from './create-customer/create-customer.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { MustMatchDirective } from './create-account/must-match.directive';
+import { MustMatchDirective } from './create-customer/must-match.directive';
 import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateAccountComponent,
+    CreateCustomerComponent,
     SignInComponent,
     MustMatchDirective
   ],

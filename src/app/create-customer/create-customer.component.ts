@@ -3,11 +3,11 @@ import {throwError} from 'rxjs';
 import {CustomerService} from '../services/customer.service';
 
 @Component({
-  selector: 'app-create-account',
-  templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.css']
+  selector: 'app-create-customer',
+  templateUrl: './create-customer.component.html',
+  styleUrls: ['./create-customer.component.css']
 })
-export class CreateAccountComponent implements OnInit {
+export class CreateCustomerComponent implements OnInit {
 
   createAccountForm: any = {};
   private customer: any;
