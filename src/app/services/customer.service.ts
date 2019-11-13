@@ -17,6 +17,10 @@ export class CustomerService {
     return this.http.get('/server/customers');
   }
 
+  getCustomerByEmail(email: string) {
+    return this.http.get('/server/customers/email/' + email);
+  }
+
   createCustomer(customer: any) {
     const body = JSON.stringify(customer);
     return this.http.post('/server/customers', body, httpOptions);
