@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CustomerService} from '../services/customer.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,13 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() { }
+  constructor(private customerService: CustomerService) { }
   model: any;
 
   ngOnInit() {
   }
 
   onSubmit() {
-    return false;
+    this.customerService.getCustomers().subscribe(data => {}, err => {});
   }
 }
