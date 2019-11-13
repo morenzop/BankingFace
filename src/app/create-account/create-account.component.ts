@@ -23,15 +23,15 @@ export class CreateAccountComponent implements OnInit {
     this.customer = {
       first_name: this.createAccountForm.first_name,
       last_name: this.createAccountForm.last_name,
-      email: this.createAccountForm.email,
+      email: this.createAccountForm.email.toLowerCase(),
       password: this.createAccountForm.password,
-      address: {
+      address: [{
         street_number: this.createAccountForm.street_number,
         street_name: this.createAccountForm.street_name,
         city: this.createAccountForm.city,
         state: this.createAccountForm.state,
         zip: this.createAccountForm.zip
-      }
+      }]
     };
 
     // check to see if the customer has an account with that email
